@@ -10,7 +10,8 @@ host = "192.168.0.34"
 # the port, let's use 5001
 port = 8888
 # the name of file we want to send, make sure it exists
-filename = '/Users/pegah2/Movies/silicon valley/Season 5/Silicon.Valley.S05E08.Fifty-One.Percent.720p.AMZN.WEB-DL.Persian2Movie.Com.mkv'
+filename = '../te.jpeg'
+
 # get the file size
 filesize = os.path.getsize(filename)
 
@@ -34,7 +35,7 @@ with open(filename, "rb") as f:
         if not bytes_read:
             # file transmitting is done
             break
-        # we use sendall to assure transimission in 
+        # we use sendall to assure transimission in
         # busy networks
         s.sendall(bytes_read)
         # update the progress bar

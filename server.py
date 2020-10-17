@@ -2,7 +2,7 @@ import socket
 import tqdm
 import os
 
-SERVER_HOST = socket.gethostbyname_ex(socket.gethostname())[2][1]
+SERVER_HOST = '192.168.0.34'
 SERVER_PORT = 8888
 
 BUFFER_SIZE = 4096
@@ -26,7 +26,8 @@ filename = os.path.basename(filename)
 filesize = int(filesize)
 
 # and writing to the file stream
-progress = tqdm.tqdm(range(filesize), f"Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
+st = filename[:15] + "..."
+progress = tqdm.tqdm(range(filesize), f"Receiving {st}", unit="B", unit_scale=True, unit_divisor=1024)
 with open(filename, "wb") as f:
     for _ in progress:
         # read 1024 bytes from the socket (receive)

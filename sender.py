@@ -6,11 +6,11 @@ SEPARATOR = "<SEPARATOR>"
 BUFFER_SIZE = 4096 # send 4096 bytes each time step
 
 # the ip address or hostname of the server, the receiver
-host = "192.168.0.34"
+host = "192.168.0.40"
 # the port, let's use 5001
 port = 8888
 # the name of file we want to send, make sure it exists
-filename = '../te.jpeg'
+filename = '/home/parsa/Pictures/Screenshot from 2020-10-20 21-33-46.png'
 
 # get the file size
 filesize = os.path.getsize(filename)
@@ -26,7 +26,7 @@ print("[+] Connected.")
 # send the filename and filesize
 s.send(f"{filename}{SEPARATOR}{filesize}".encode())
 
-# start sending the file
+# start sending the s.connect((host, port))file
 progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=1024)
 with open(filename, "rb") as f:
     for _ in progress:

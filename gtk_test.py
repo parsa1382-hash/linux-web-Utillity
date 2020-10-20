@@ -1,6 +1,6 @@
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GdkPixbuf, GLib
+from gi.repository import Gtk, GdkPixbuf, GLib, GObject
 import time
 import os
 import socket
@@ -49,7 +49,7 @@ def recv():
 
 def sw(switch, state):
     if switch.get_active():
-        recv()
+        GObject.io_add_watch(recv, GLib.IO_IN)
 
 switch = Gtk.Switch()
 switch.connect("notify::active", sw)

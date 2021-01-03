@@ -6,14 +6,11 @@ SEPARATOR = "<SEPARATOR>"
 BUFFER_SIZE = 4096 # send 4096 bytes each time step
 
 # the ip address or hostname of the server, the receiver
-host = "192.168.0.40"
+host = "109.125.129.142"
 # the port, let's use 5001
-port = 8888
-# the name of file we want to send, make sure it exists
-filename = '/home/parsa/Pictures/Screenshot from 2020-10-20 21-33-46.png'
+port = 7070
 
-# get the file size
-filesize = os.path.getsize(filename)
+
 
 # create the client socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,23 +20,19 @@ s.connect((host, port))
 print("[+] Connected.")
 
 
-# send the filename and filesize
-s.send(f"{filename}{SEPARATOR}{filesize}".encode())
+mes = 'hello parsa'
+s.send(mes.encode())
 
-# start sending the s.connect((host, port))file
-progress = tqdm.tqdm(range(filesize), f"Sending {filename}", unit="B", unit_scale=True, unit_divisor=1024)
-with open(filename, "rb") as f:
-    for _ in progress:
-        # read the bytes from the file
-        bytes_read = f.read(BUFFER_SIZE)
-        if not bytes_read:
-            # file transmitting is done
-            break
-        # we use sendall to assure transimission in
-        # busy networks
-        s.sendall(bytes_read)
-        # update the progress bar
-        progress.update(len(bytes_read))
-# close the socket
+f = s.recv(BUFFER_SIZE)
+print(f)
+##############################################################3
+'''g = socket.socket()
+g.bind(('192.168.1.4', 7070))
+g.listen(5)
 
 
+client_socket, address = g.accept()
+
+rec = client_socket.recv(BUFFER_SIZE).decode()
+
+f = rec.split(SEPARATOR)'''
